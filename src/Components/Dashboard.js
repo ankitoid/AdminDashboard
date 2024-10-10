@@ -54,16 +54,19 @@ const Dashboard = () => {
 
   return (
     <div className="flex h-screen overflow-hidden">
+      {/* Sidebar */}
       <div
         className={`transition-all duration-300 ease-in-out ${
           sidebarCollapsed ? 'w-16' : 'w-64'
         } bg-gray-800 text-white h-full fixed lg:static`}
       >
-        <div className="p-4 border-b bg-gray-800 flex justify-between items-center"> {/* Changed to blue */}
-          <h2 className={`text-lg font-semibold ${sidebarCollapsed ? 'hidden' : 'block'}`}>Dashboard</h2>
+        <div className="p-[16px]  bg-gray-800 flex justify-between items-center">
+          <h2 className={`text-lg font-semibold ${sidebarCollapsed ? 'hidden' : 'block'}`}>
+            Dashboard
+          </h2>
           <button
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className="text-white p-1.5 rounded focus:outline-none lg:hidden"
+            className="text-white p-1.5 rounded focus:outline-none"
           >
             <div className="flex flex-col items-center">
               <span className="block w-6 h-1 bg-white mb-1"></span>
@@ -72,6 +75,8 @@ const Dashboard = () => {
             </div>
           </button>
         </div>
+
+        {/* Navigation */}
         <nav className="mt-4">
           <ul>
             {[
@@ -88,7 +93,6 @@ const Dashboard = () => {
               >
                 <Link to="#" onClick={() => handleLinkClick(name)} className="flex items-center w-full">
                   <span className="mr-2">{icon}</span>
-                  {/* Show the name only if the sidebar is not collapsed */}
                   {!sidebarCollapsed && name.replace('CandidateInfo', 'Candidate Information').replace('AdminPanel', 'Admin Panel')}
                 </Link>
               </li>
@@ -97,8 +101,9 @@ const Dashboard = () => {
         </nav>
       </div>
 
-      <div className={`flex-1 flex flex-col ${sidebarCollapsed ? 'ml-16' : 'ml-64'} transition-all duration-300`}>
-        <div className="flex justify-between items-center text-right bg-gray-800 text-white p-4 border-b border-blue-500"> {/* Changed to blue */}
+      {/* Main Content Area */}
+      <div className={`flex-1 flex flex-col ${sidebarCollapsed ? 'ml-0' : 'ml-0'} transition-all duration-300`}>
+        <div className="flex justify-between items-center text-right bg-gray-800 text-white p-4 border-b border-white">
           <h2 className="text-lg font-semibold text-center">John David</h2>
           <img
             src={imges}
@@ -112,11 +117,7 @@ const Dashboard = () => {
             <h1 className="text-2xl font-bold">{getPageTitle()}</h1>
           </header>
 
-          <div
-            className={`bg-white p-4 rounded shadow transition-all duration-500 ${
-              pageVisible ? 'opacity-100' : 'opacity-0 h-0'
-            }`}
-          >
+          <div className={`bg-white p-4 rounded shadow transition-all duration-500 ${pageVisible ? 'opacity-100' : 'opacity-0 h-0'}`}>
             {renderPageContent()}
           </div>
         </div>
